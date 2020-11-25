@@ -6,7 +6,11 @@ import { AiFillRightCircle } from "react-icons/ai";
 
 import Card from "../../components/card";
 
-const RickandMorty = ({ listRickandMorty, setListRickandMort }) => {
+const RickandMorty = ({
+  listRickandMorty,
+  setListRickandMort,
+  setCollection,
+}) => {
   const [page, setPage] = useState(1);
   useEffect(() => {
     axios
@@ -51,6 +55,9 @@ const RickandMorty = ({ listRickandMorty, setListRickandMort }) => {
             name={items.name}
             species={items.species}
             image={items.image}
+            type={"rick-and-morty"}
+            setCollection={setCollection}
+            show={true}
           />
         ))}
       </AlignContainer>

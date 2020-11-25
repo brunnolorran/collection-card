@@ -26,8 +26,12 @@ const useStyles = makeStyles({
   },
 });
 
-const MediaCard = ({ name, species, image }) => {
+const MediaCard = ({ name, species, image, type, setCollection, show }) => {
   const classes = useStyles();
+
+  const handleClick = (select) => {
+    setCollection((prevState) => [...prevState, select]);
+  };
 
   return (
     <Card className={classes.root}>
@@ -42,11 +46,24 @@ const MediaCard = ({ name, species, image }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Favoritar
-        </Button>
-      </CardActions>
+      {show && (
+        <CardActions>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              handleClick({
+                name: name,
+                species: species,
+                image: image,
+                type: type,
+              });
+            }}
+          >
+            Favoritar
+          </Button>
+        </CardActions>
+      )}
     </Card>
   );
 };
