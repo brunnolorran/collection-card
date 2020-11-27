@@ -26,11 +26,24 @@ const useStyles = makeStyles({
   },
 });
 
-const MediaCard = ({ name, species, image, type, setCollection, show }) => {
+const MediaCard = ({
+  name,
+  species,
+  image,
+  type,
+  setCollection,
+  show,
+  collection,
+}) => {
   const classes = useStyles();
 
   const handleClick = (select) => {
     setCollection((prevState) => [...prevState, select]);
+  };
+
+  const handleClickRemove = (select) => {
+    const filter = collection.filter((item) => item.name !== select.name);
+    setCollection(filter);
   };
 
   return (
@@ -64,6 +77,22 @@ const MediaCard = ({ name, species, image, type, setCollection, show }) => {
           </Button>
         </CardActions>
       )}
+      <CardActions>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() =>
+            handleClickRemove({
+              name: name,
+              species: species,
+              image: image,
+              type: type,
+            })
+          }
+        >
+          Remover
+        </Button>
+      </CardActions>
     </Card>
   );
 };

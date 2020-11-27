@@ -14,7 +14,7 @@ const Routes = ({
   return (
     <Switch>
       <Route path="/" exact>
-        <Favorites collection={collection} />
+        <Favorites collection={collection} setCollection={setCollection} />
       </Route>
       <Route path="/rick-and-morty" exact>
         <RickandMorty
